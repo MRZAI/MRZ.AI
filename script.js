@@ -1,5 +1,5 @@
 // DOM Elements - මෙම කොටස script.js ගොනුවේ ආරම්භයේ තබන්න
-const container = document.querySelector(".container");
+const promptInput = document.getElementById("prompt-input");
 const chatsContainer = document.querySelector(".chats-container");
 const promptForm = document.querySelector(".prompt-form"); // ← මෙතන අකුරු වැරදියක් තිබේ!
 const promptInput = document.querySelector("#prompt-input"); // ← ID භාවිතා කරන්න
@@ -150,10 +150,11 @@ function updateLanguageUI() {
   
   // පහත පේළිය promptInput null නොවන බව තහවුරු කරන්න
   if (promptInput) {
-    promptInput.placeholder = language[currentLang].placeholder;
-  } else {
-    console.error("Prompt input element not found!");
-  }
+    promptInput?.placeholder = language[currentLang].placeholder;
+  } if (!promptInput) {
+  console.error("Prompt input element not found!");
+  return;
+}
   
   // Update suggestions
   const suggestionItems = document.querySelectorAll('.suggestions-item .text');
@@ -177,26 +178,18 @@ function initTheme() {
     themeToggleBtn.textContent = isLightTheme ? "dark_mode" : "light_mode";
   });
 }
-// Initialize theme
-function initTheme() {
-  const isLightTheme = localStorage.getItem("themeColor") === "light_mode";
-  document.body.classList.toggle("light-theme", isLightTheme);
-  themeToggleBtn.textContent = isLightTheme ? "dark_mode" : "light_mode";
-  
-  themeToggleBtn.addEventListener("click", () => {
-    const isLightTheme = document.body.classList.toggle("light-theme");
-    localStorage.setItem("themeColor", isLightTheme ? "light_mode" : "dark_mode");
-    themeToggleBtn.textContent = isLightTheme ? "dark_mode" : "light_mode";
-  });
-}
-// Initialize the app
+// Initialize the app after DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initLanguage();
   
-  // Rest of your event listeners
-  promptForm.addEventListener("submit", handleFormSubmit);
-  // ... other event listeners ...
+  // Event listeners
+  promptForm?.addEventListener("submit", handleFormSubmit);
+  fileInput?.addEventListener("change", handleFileUpload);
+  document.querySelector("#cancel-file-btn")?.addEventListener("click", cancelFileUpload);
+  document.querySelector("#stop-response-btn")?.addEventListener("click", stopResponse);
+  document.querySelector("#delete-chats-btn")?.addEventListener("click", deleteChats);
+  document.querySelector("#add-file-btn")?.addEventListener("click", () => fileInput.click());
 });
 
 // Handle file input change (file upload)
