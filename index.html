@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - youtube.com/@codingnepal -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SINHA Ai Assistant VR1</title>
-    <!-- Linking Google Fonts For Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@32,400,0,0" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
-      <!-- App Header -->
       <header class="app-header">
-	  <img src="logo.png" alt="" width="150" height="150">
+        <img src="logo.png" alt="SINHA AI Logo" width="150" height="150">
         <h1 class="heading">Hello, I am SINHA Ai Assistant VR1</h1>
-        <h4 class="sub-heading">ආයුබෝවන් ! How can I help you today?</h4>
+        <h4 class="sub-heading" id="greeting">ආයුබෝවන්! How can I help you today?</h4>
+        <div class="language-switcher">
+          <button id="sinhala-btn" class="lang-btn active">සිංහල</button>
+          <button id="english-btn" class="lang-btn">English</button>
+        </div>
       </header>
-      <!-- Suggestions List -->
+
       <ul class="suggestions">
         <li class="suggestions-item">
-          <p class="text">Ask me anything you want, I will answer,</p>
+          <p class="text">Ask me anything you want, I will answer</p>
           <span class="icon material-symbols-rounded">draw</span>
         </li>
         <li class="suggestions-item">
@@ -28,23 +29,22 @@
           <span class="icon material-symbols-rounded">lightbulb</span>
         </li>
         <li class="suggestions-item">
-          <p class="text">Suggest some useful tools for debugging JavaScript code.</p>
+          <p class="text">Suggest some useful tools for debugging JavaScript code</p>
           <span class="icon material-symbols-rounded">explore</span>
         </li>
         <li class="suggestions-item">
-          <p class="text">Create a React JS component for the simple todo list app.</p>
+          <p class="text">Create a React JS component for the simple todo list app</p>
           <span class="icon material-symbols-rounded">code_blocks</span>
         </li>
       </ul>
-      <!-- Chats -->
+
       <div class="chats-container"></div>
-      <!-- Prompt Input -->
+
       <div class="prompt-container">
         <div class="prompt-wrapper">
           <form action="#" class="prompt-form">
-            <input type="text" placeholder="Ask me anything..." class="prompt-input" required />
+            <input type="text" id="prompt-input" placeholder="Ask me anything..." class="prompt-input" required />
             <div class="prompt-actions">
-              <!-- File Upload Wrapper -->
               <div class="file-upload-wrapper">
                 <img src="#" class="file-preview" />
                 <input id="file-input" type="file" accept="image/*, .pdf, .txt, .csv" hidden />
@@ -52,12 +52,10 @@
                 <button id="cancel-file-btn" type="button" class="material-symbols-rounded">close</button>
                 <button id="add-file-btn" type="button" class="material-symbols-rounded">attach_file</button>
               </div>
-              <!-- Send Prompt and Stop Response Buttons -->
               <button id="stop-response-btn" type="button" class="material-symbols-rounded">stop_circle</button>
               <button id="send-prompt-btn" class="material-symbols-rounded">arrow_upward</button>
             </div>
           </form>
-          <!-- Theme and Delete Chats Buttons -->
           <button id="theme-toggle-btn" class="material-symbols-rounded">light_mode</button>
           <button id="delete-chats-btn" class="material-symbols-rounded">delete</button>
         </div>
