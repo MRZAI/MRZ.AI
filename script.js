@@ -1,14 +1,8 @@
+// DOM Elements - මෙම කොටස script.js ගොනුවේ ආරම්භයේ තබන්න
 const container = document.querySelector(".container");
 const chatsContainer = document.querySelector(".chats-container");
-const promptForm = document.querySelector(".prompt-form");
-const promptInput = promptForm.querySelector(".prompt-input");
-const fileInput = promptForm.querySelector("#file-input");
-const fileUploadWrapper = promptForm.querySelector(".file-upload-wrapper");
-const themeToggleBtn = document.querySelector("#theme-toggle-btn");
-const container = document.querySelector(".container");
-const chatsContainer = document.querySelector(".chats-container");
-const promptForm = document.querySelector(".prompt-form");
-const promptInput = document.querySelector("#prompt-input");
+const promptForm = document.querySelector(".prompt-form"); // ← මෙතන අකුරු වැරදියක් තිබේ!
+const promptInput = document.querySelector("#prompt-input"); // ← ID භාවිතා කරන්න
 const fileInput = document.querySelector("#file-input");
 const fileUploadWrapper = document.querySelector(".file-upload-wrapper");
 const themeToggleBtn = document.querySelector("#theme-toggle-btn");
@@ -153,13 +147,23 @@ function updateLanguageUI() {
   
   // Update UI texts
   greetingElement.textContent = language[currentLang].greeting;
-  promptInput.placeholder = language[currentLang].placeholder;
+  
+  // පහත පේළිය promptInput null නොවන බව තහවුරු කරන්න
+  if (promptInput) {
+    promptInput.placeholder = language[currentLang].placeholder;
+  } else {
+    console.error("Prompt input element not found!");
+  }
   
   // Update suggestions
   const suggestionItems = document.querySelectorAll('.suggestions-item .text');
-  language[currentLang].suggestions.forEach((text, i) => {
-    suggestionItems[i].textContent = text;
-  });
+  if (suggestionItems.length > 0) {
+    language[currentLang].suggestions.forEach((text, i) => {
+      if (suggestionItems[i]) {
+        suggestionItems[i].textContent = text;
+      }
+    });
+  }
 }
 // Initialize theme
 function initTheme() {
